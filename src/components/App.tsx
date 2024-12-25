@@ -1,40 +1,24 @@
 import styled from "styled-components";
 import Card from "./Card";
-import { useState } from "react";
+import { useReducer } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { CardState, Cartoon } from "./types/card";
 import { cartoons } from "./data/cartoons";
-
-const initialCardState: CardState = {
-  selectedCard: undefined,
-  openModal: false,
-  isInContainer: false,
-};
+import { cardReducer } from "./reducers/cardReducer";
 
 function App() {
-  const [state, setState] = useState<CardState>(initialCardState);
+  const [state, dispatch] = useReducer(cardReducer, initialCardState);
 
   const closeModal = () => {
-    setState((prevState) => ({
-      ...prevState,
-      openModal: false,
-      selectedCard: undefined,
-    }));
+    dispatch({ type: "CLOSE_MODAL" });
   };
 
   const changeSelectedCardHandler = (item: Cartoon) => {
-    setState((prevState) => ({
-      ...prevState,
-      selectedCard: item,
-      openModal: true,
-    }));
+    dispatch({ type: "CHANGE_SELECTED_CARD", payload: item });
   };
 
   const handleMouseEnterLeave = (isIn: boolean) => {
-    setState((prevState) => ({
-      ...prevState,
-      isInContainer: isIn,
-    }));
+    dispatch({ type: "HANDLE_MOUSE_ENTER_LEAVE", payload: isIn });
   };
 
   return (
@@ -76,6 +60,12 @@ function App() {
 }
 
 export default App;
+
+const initialCardState: CardState = {
+  selectedCard: undefined,
+  openModal: false,
+  isInContainer: false,
+};
 
 const Container = styled.div`
   height: 100vh;
