@@ -2,7 +2,7 @@ import { useState } from "react";
 import styled from "styled-components";
 import { motion } from "framer-motion";
 import { ExpandCard } from "./ExpandCard";
-import { Cartoon } from "./types/card";
+import { Cartoon } from "../types/card";
 
 type CardProps = {
   cartoon: Cartoon;

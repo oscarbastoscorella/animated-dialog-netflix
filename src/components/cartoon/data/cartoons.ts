@@ -1,4 +1,4 @@
-import { Cartoon } from "../types/card";
+import { Cartoon } from "../../types/card";
 
 export const cartoons: Cartoon[] = [
   { id: "1", name: "F is for Family", image: "f_for_family.jpg" },

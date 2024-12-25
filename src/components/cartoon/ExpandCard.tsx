@@ -1,10 +1,9 @@
 import styled from "styled-components";
 import { motion } from "framer-motion";
 import arrowUp from "./assets/nav-arrow-up.svg";
-import useDebounce from "./hooks/useDebounce";
+import useDebounce from "../hooks/useDebounce";
 import { useEffect } from "react";
-import { Cartoon, SelectedCardState } from "./types/card";
-import { hoverCardVariants } from "./constants/variants";
+import { Cartoon, SelectedCardState } from "../types/card";
 
 type ExpandCardProps = {
   isSelectedCard: boolean;
@@ -63,6 +62,15 @@ export function ExpandCard({
     </HoverContainer>
   );
 }
+
+const hoverCardVariants = {
+  visible: {
+    scale: 1,
+  },
+  expand: {
+    scale: 1.5,
+  },
+};
 
 const HoverContainer = styled(motion.div)<{ zIndex: number }>`
   width: 100%;
