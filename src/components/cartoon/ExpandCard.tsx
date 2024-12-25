@@ -2,7 +2,6 @@ import styled from "styled-components";
 import { motion } from "framer-motion";
 import arrowUp from "./assets/nav-arrow-up.svg";
 import useDebounce from "../hooks/useDebounce";
-import { useEffect } from "react";
 import { Cartoon, SelectedCardState } from "../types/card";
 
 type ExpandCardProps = {
@@ -24,12 +23,12 @@ export function ExpandCard({
 }: ExpandCardProps) {
   const debouncedIsHovering = useDebounce(cardState.isHovering, 300);
 
-  useEffect(() => {
-    if (!isInContainer && cardState.isHovering) handleHoverEnd();
-  }, [isInContainer]);
+  const handleHoverEnd = () => {
+    if (!isInContainer && cardState.isHovering) {
+      setCardState((prevState) => ({ ...prevState, isHovering: false }));
+    }
+  };
 
-  const handleHoverEnd = () =>
-    setCardState((prevState) => ({ ...prevState, isHovering: false }));
   const handleClose = () =>
     setCardState((prevState) => ({ ...prevState, isOpen: false }));
 
@@ -92,7 +91,7 @@ const Button = styled.button`
   bottom: 10px;
   right: 20px;
   cursor: pointer;
-  &&:hover {
+  &:hover {
     border: 1px solid white;
   }
 `;

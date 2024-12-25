@@ -1,50 +1,63 @@
-# React + TypeScript + Vite
+# Animated Dialog - Netflix UI
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This project is an animated modal inspired by the Netflix UI micro-interactions. It is built using React, TypeScript, and Vite, with animations powered by Framer Motion and styled-components for styling.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- Animated modal interactions
+- Hover effects and transitions
+- Responsive design
+- TypeScript for type safety
+- ESLint for code quality
 
-## Expanding the ESLint configuration
+## Getting Started
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+### Prerequisites
 
-- Configure the top-level `parserOptions` property like this:
+- Node.js (version 16.x or higher recommended)
+- Yarn (version 1.22.x or higher recommended)
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+### Installation
+
+1. Clone the repository:
+
+   ```sh
+   git clone https://github.com/oscarbastoscorella/animated-dialog-netflix
+   cd animated-dialog-netflix
+   ```
+
+2. Install the dependencies:
+
+   ```sh
+   yarn install
+   ```
+
+### Running the Project
+
+To start the development server:
+
+```sh
+yarn dev
 ```
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+To build the project for production:
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
-
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
+```sh
+yarn build
 ```
+
+To preview the production build:
+
+```sh
+yarn preview
+```
+
+To lint the code:
+
+```sh
+yarn lint
+```
+
+## Author
+
+- **Oscar Bastos** - [GitHub](https://github.com/oscarbastoscorella)
