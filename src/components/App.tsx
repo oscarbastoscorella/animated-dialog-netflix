@@ -2,47 +2,64 @@ import styled from "styled-components";
 import Card from "./Card";
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Cartoon } from "./types/card";
+import { CardState, Cartoon } from "./types/card";
 import { cartoons } from "./data/cartoons";
 
+const initialCardState: CardState = {
+  selectedCard: undefined,
+  openModal: false,
+  isInContainer: false,
+};
+
 function App() {
-  const [selectedCard, setSelectedCard] = useState<Cartoon | undefined>();
-  const [openModal, setOpenModal] = useState(false);
-  const [isInContainer, setIsInContainer] = useState(false);
+  const [state, setState] = useState<CardState>(initialCardState);
 
   const closeModal = () => {
-    setOpenModal(false);
-    setSelectedCard(undefined);
+    setState((prevState) => ({
+      ...prevState,
+      openModal: false,
+      selectedCard: undefined,
+    }));
   };
 
   const changeSelectedCardHandler = (item: Cartoon) => {
-    setSelectedCard(item);
-    setOpenModal(true);
+    setState((prevState) => ({
+      ...prevState,
+      selectedCard: item,
+      openModal: true,
+    }));
+  };
+
+  const handleMouseEnterLeave = (isIn: boolean) => {
+    setState((prevState) => ({
+      ...prevState,
+      isInContainer: isIn,
+    }));
   };
 
   return (
     <>
       <Container>
         <CarouselContainer
-          onMouseEnter={() => setIsInContainer(true)}
-          onMouseLeave={() => setIsInContainer(false)}
+          onMouseEnter={() => handleMouseEnterLeave(true)}
+          onMouseLeave={() => handleMouseEnterLeave(false)}
         >
           {cartoons.map((cartoon) => (
             <Card
               key={cartoon.id}
               cartoon={cartoon}
               changeSelectedCard={changeSelectedCardHandler}
-              isSelectedCard={selectedCard?.id === cartoon.id}
-              isInContainer={isInContainer}
+              isSelectedCard={state.selectedCard?.id === cartoon.id}
+              isInContainer={state.isInContainer}
             />
           ))}
         </CarouselContainer>
       </Container>
       <AnimatePresence>
-        {openModal && selectedCard && (
+        {state.openModal && state.selectedCard && (
           <Overlay>
             <Modal
-              layoutId={selectedCard.id.toString()}
+              layoutId={state.selectedCard.id.toString()}
               transition={{ duration: 0.35 }}
             >
               <Button onClick={closeModal}>close</Button>
@@ -72,7 +89,6 @@ const Container = styled.div`
 `;
 
 const CarouselContainer = styled.div`
-  height: fit-content;
   width: 75%;
   display: flex;
   gap: 15px;

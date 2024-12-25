@@ -4,7 +4,13 @@ export type Cartoon = {
   image: string;
 };
 
-export type CardState = {
+export type SelectedCardState = {
   isHovering: boolean;
   isOpen: boolean;
+};
+
+export type CardState = {
+  selectedCard: Cartoon | undefined;
+  openModal: boolean;
+  isInContainer: boolean;
 };
