@@ -2,6 +2,12 @@
 
 This project is an animated modal inspired by the Netflix UI micro-interactions. It is built using React, TypeScript, and Vite, with animations powered by Framer Motion and styled-components for styling.
 
+> [!TIP]
+> Learn how to implement this sleek micro-interaction using React, TypeScript and Framer Motion
+
+![animated_dialog](https://github.com/user-attachments/assets/1b034d16-2657-4d1a-bc12-4348b59b3747)
+
+
 ## Features
 
 - Animated modal interactions
