@@ -1,7 +1,6 @@
 import { useState } from "react";
 import styled from "styled-components";
 import { motion } from "framer-motion";
-
 import { ExpandCard } from "./ExpandCard";
 import { Cartoon } from "./types/card";
 
@@ -12,29 +11,19 @@ type CardProps = {
   isInContainer: boolean;
 };
 
-interface CardState {
-  isOpen: boolean;
-  isHovering: boolean;
-}
-
 export default function Card({
   cartoon,
   changeSelectedCard,
   isSelectedCard,
   isInContainer,
 }: CardProps) {
-  const [cardState, setCardState] = useState<CardState>({
+  const [cardState, setCardState] = useState({
     isOpen: false,
     isHovering: false,
   });
 
-  const handleHoverStart = () => {
-    setCardState((prevState) => ({
-      ...prevState,
-      isOpen: true,
-      isHovering: true,
-    }));
-  };
+  const handleHoverStart = () =>
+    setCardState({ isOpen: true, isHovering: true });
 
   return (
     <Container>
@@ -46,7 +35,6 @@ export default function Card({
         setCardState={setCardState}
         isInContainer={isInContainer}
       />
-
       <Image
         src={`./images/${cartoon.image}`}
         alt={cartoon.name}
@@ -58,11 +46,12 @@ export default function Card({
 
 const Container = styled(motion.div)`
   width: 100%;
+  min-width: 225px;
   aspect-ratio: 16/9;
   position: relative;
 `;
 
-export const Image = styled(motion.img)`
+const Image = styled(motion.img)`
   width: 100%;
   height: 100%;
   object-fit: contain;

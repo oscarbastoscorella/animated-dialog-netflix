@@ -8,18 +8,17 @@ import { cartoons } from "./data/cartoons";
 function App() {
   const [selectedCard, setSelectedCard] = useState<Cartoon | undefined>();
   const [openModal, setOpenModal] = useState(false);
-
   const [isInContainer, setIsInContainer] = useState(false);
 
-  function closeModal() {
+  const closeModal = () => {
     setOpenModal(false);
     setSelectedCard(undefined);
-  }
+  };
 
-  function changeSelectedCardHandler(item: Cartoon) {
+  const changeSelectedCardHandler = (item: Cartoon) => {
     setSelectedCard(item);
     setOpenModal(true);
-  }
+  };
 
   return (
     <>

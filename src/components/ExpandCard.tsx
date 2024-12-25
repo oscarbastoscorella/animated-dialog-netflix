@@ -4,7 +4,7 @@ import arrowUp from "./assets/nav-arrow-up.svg";
 import useDebounce from "./hooks/useDebounce";
 import { useEffect } from "react";
 import { CardState, Cartoon } from "./types/card";
-import { hoverCardVariants } from "../constants/variants";
+import { hoverCardVariants } from "./constants/variants";
 
 type ExpandCardProps = {
   isSelectedCard: boolean;
@@ -26,33 +26,20 @@ export function ExpandCard({
   const debouncedIsHovering = useDebounce(cardState.isHovering, 300);
 
   useEffect(() => {
-    if (!isInContainer && cardState.isHovering) {
-      handleHoverEnd();
-    }
+    if (!isInContainer && cardState.isHovering) handleHoverEnd();
   }, [isInContainer]);
 
-  const handleHoverEnd = () => {
-    setCardState((prevState) => ({
-      ...prevState,
-      isHovering: false,
-    }));
-  };
-
-  const handleClose = () => {
-    setCardState((prevState) => ({
-      ...prevState,
-      isOpen: false,
-    }));
-  };
+  const handleHoverEnd = () =>
+    setCardState((prevState) => ({ ...prevState, isHovering: false }));
+  const handleClose = () =>
+    setCardState((prevState) => ({ ...prevState, isOpen: false }));
 
   return (
     <HoverContainer
-      initial={"visible"}
+      initial="visible"
       whileHover={debouncedIsHovering ? "expand" : "visible"}
       variants={hoverCardVariants}
-      transition={{
-        duration: 0.35,
-      }}
+      transition={{ duration: 0.35 }}
       zIndex={cardState.isOpen || isSelectedCard ? 1 : 0}
       layoutId={cartoon.id}
       onHoverEnd={handleHoverEnd}
