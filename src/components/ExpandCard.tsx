@@ -1,10 +1,10 @@
 import styled from "styled-components";
 import { motion } from "framer-motion";
 import arrowUp from "./assets/nav-arrow-up.svg";
-import useDebounce from "./useDebounce";
+import useDebounce from "./hooks/useDebounce";
 import { useEffect } from "react";
 import { CardState, Cartoon } from "./types/card";
-import { hoverCardVariants } from "./constants/variants";
+import { hoverCardVariants } from "../constants/variants";
 
 type ExpandCardProps = {
   isSelectedCard: boolean;
